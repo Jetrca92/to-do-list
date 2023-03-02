@@ -1,3 +1,33 @@
+// Array for storing tasks
+let myTasks = [];
+
+// Tasks class
+class Task {
+    constructor(name, description, date, urgent) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.urgent = urgent;
+    }
+    info() {
+        console.log(`${name} - ${description}, due on ${date}, ${urgent ? 'urgent' : 'not urgent'}`);
+    }
+    pushNewTask() {
+        myTasks.push(this);
+    }
+}
+
+// Adds task to array
+function addTask() {
+    const name = document.querySelector('#task-name').value;
+    const description = document.querySelector('#task-description').value;
+    const date = document.querySelector('#task-date').value;
+    const urgent = document.querySelector('#task-urgent').value;
+    const task = new Task(name, description, date, urgent);
+    task.pushNewTask();
+    //add function to add new task to display
+}
+
 // Get buttons
 const inboxBtn = document.querySelector('#inbox');
 const todayBtn = document.querySelector('#today');
