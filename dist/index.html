@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jetrca's TODO list</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../src/styles.css">
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>{{ request.user.email }}</h2>
+
+            <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+            <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+            <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+            <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+            <hr>
+
+            <div id="emails-view">
+            </div>
+
+            <div id="email-view">
+            </div>
+        </div>
+    </body>
+</html>
