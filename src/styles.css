@@ -60,6 +60,7 @@ body {
 }
 
 #addTaskForm {
+    display: none;
     text-align: start;
     padding: 30px;
 }

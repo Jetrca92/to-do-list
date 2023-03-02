@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log('hi');\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("// Get buttons\r\nconst inboxBtn = document.querySelector('#inbox');\r\nconst todayBtn = document.querySelector('#today');\r\nconst upcomingBtn = document.querySelector('#upcoming');\r\nconst projectsBtn = document.querySelector('#projects');\r\nconst addTaskBtn = document.querySelector('#addTask');\r\n\r\naddTaskBtn.addEventListener('click', () => {\r\n    const form = document.querySelector('#addTaskForm');\r\n    form.style.display = 'block';\r\n});\r\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ })
 
