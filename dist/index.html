@@ -25,25 +25,27 @@
 
             <div id="inbox-view">
                 <button class="btn btn-outline-primary" id="addTask">+ Add task</button>
-                <form id="addTaskForm">
-                    <div class="mb-3">
-                        <label for="task-name" class="form-label">Task name</label>
-                        <input type="text" class="form-control" id="task-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="task-description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="task-description">
-                    </div>
-                    <div class="mb-3">
-                        <label for="task-date" class="form-label">Date</label>
-                        <input type="date" class="date form-control" id="task-date">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="task-urgent">
-                        <label class="form-check-label" for="task-urgent">Check if task is urgent</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                <div class="add-task-form">
+                    <form id="form">
+                        <div class="mb-3">
+                            <label for="task-name" class="form-label">Task name</label>
+                            <input type="text" class="form-control" id="task-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="task-description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="task-description">
+                        </div>
+                        <div class="mb-3">
+                            <label for="task-date" class="form-label">Date</label>
+                            <input type="date" class="date form-control" id="task-date">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="task-urgent">
+                            <label class="form-check-label" for="task-urgent">Check if task is urgent</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
             
             <div id="today-view">
