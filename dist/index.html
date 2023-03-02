@@ -5,21 +5,32 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../src/styles.css">
         <script src="main.js"></script>
+        <link rel="icon" type="image/x-icon" href="../src/images/check.ico">
     </head>
     <body>
-        <div class="container">
-            <h2>{{ request.user.email }}</h2>
-
-            <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
-            <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
-            <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-            <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+        <header class="header">
+            <div class="title-container">
+                <img src="../src/images/check.png" class="title-img" alt="check icon">
+                <h1 class="h1"><span class="blue">To</span><span class="blue-light">Do </span><span class="gray">by Jetrca</span></h1>
+            </div>
+            <div class="btn-container">
+                <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+                <button class="btn btn-sm btn-outline-primary" id="today">Today</button>
+                <button class="btn btn-sm btn-outline-primary" id="upcoming">Upcoming</button>
+                <button class="btn btn-sm btn-outline-primary" id="projects">Projects</button>
+            </div>
+        </header>
             <hr>
-
-            <div id="emails-view">
+        
+        <div class="container">
+            
+            <div id="today-view">
             </div>
 
-            <div id="email-view">
+            <div id="upcoming-view">
+            </div>
+
+            <div id="projects-view">
             </div>
         </div>
     </body>
