@@ -75,9 +75,6 @@ body {
     padding: 30px;
 }
 
-.tasks-grid {    
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+.inbox-tasks {    
+    text-align: start;
 }
