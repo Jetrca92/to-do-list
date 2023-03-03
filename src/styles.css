@@ -54,6 +54,11 @@ body {
     border-color: #3D9AE2;
 }
 
+.btn-outline-primary:hover {
+    background-color: #3D9AE2;
+    border-color: #3D9AE2;
+}
+
 #inbox-view {
     margin: 0 30px;
     color: #6c757d;
@@ -68,4 +73,11 @@ body {
 #form {
     text-align: start;
     padding: 30px;
+}
+
+.tasks-grid {    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
 }

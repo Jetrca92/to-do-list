@@ -35,6 +35,20 @@ const upcomingBtn = document.querySelector('#upcoming');
 const projectsBtn = document.querySelector('#projects');
 const addTaskBtn = document.querySelector('#addTask');
 
+// Handle submit form
+document.querySelector('#form').addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent load
+
+    // Add task, clear form value
+    addTask();
+    document.querySelector('#task-name').value = "";
+    document.querySelector('#task-description').value = "";
+    document.querySelector('#task-date').value = "";
+    document.querySelector('#task-urgent').checked = false;
+    document.querySelector('.add-task-form').style.display = 'none';
+    return false;
+});
+
 addTaskBtn.addEventListener('click', () => {
     const form = document.querySelector('.add-task-form');
     if ((form.style.display === 'none') || (!form.style.display)) {
