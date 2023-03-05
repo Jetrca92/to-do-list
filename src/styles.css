@@ -78,3 +78,31 @@ body {
 .inbox-tasks {    
     text-align: start;
 }
+
+.unchecked-btn {
+    width: 30px;
+    height: auto;
+    opacity: 0.2;
+}
+
+.checked-btn {
+    width: 30px;
+    height: auto;
+    opacity: 1;
+}
+
+.list-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-checkmark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+}
