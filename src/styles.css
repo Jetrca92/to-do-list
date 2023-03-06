@@ -102,7 +102,13 @@ body {
     align-items: center;
 }
 
-.list-header {
+.task-item {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
