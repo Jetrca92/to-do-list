@@ -25,6 +25,7 @@ function addTask() {
     const urgent = document.querySelector('#task-urgent').checked;
     const task = new Task(name, description, date, urgent);
     myTasks.push(task);
+    console.log(myTasks);
     createTaskLi(task);
     //add function to add new task to display
 }
@@ -61,7 +62,6 @@ function createTaskLi(task) {
     description.classList.add('d-flex', 'flex-wrap');
 
     taskName.innerHTML = task.name;
-    console.log(task.date);
     const taskDate = new Date(Date.parse(task.date));
     date.innerHTML = format(taskDate, 'MMM do yyyy');
     
@@ -89,7 +89,63 @@ function createTaskLi(task) {
     ul.appendChild(li);
 }
 
+function createTodayTaskLi() {
+    const ul = document.querySelector('#listTodayUl');
 
+    // Create elements, set class, innerhtml
+    const li = document.createElement('li');
+    const taskItem = document.createElement('div');
+    const listCheckmark = document.createElement('div');
+    const img = document.createElement('img');
+    const listContent = document.createElement('div');
+    const contentHeader = document.createElement('div');
+    const div1 = document.createElement('div');
+    const taskName = document.createElement('b');
+    const taskUrgent = document.createElement('span');
+    const div2 = document.createElement('div');
+    const date = document.createElement('span');
+    const listBody = document.createElement('div');
+    const description = document.createElement('p');
+
+    li.setAttribute('class', 'list-group-item');
+    taskItem.setAttribute('class', 'task-item');
+    listCheckmark.classList.add('list-checkmark', 'me-3');
+    img.classList.add('unchecked-btn', 'clickable');
+    img.setAttribute('src', '../src/images/check.png');
+    img.setAttribute('alt', 'check icon');
+    listContent.setAttribute('class', 'list-content');
+    contentHeader.classList.add('d-flex', 'justify-content-between');
+    taskName.setAttribute('class', 'me-3');
+    listBody.setAttribute('class', 'list-body');
+    description.classList.add('d-flex', 'flex-wrap');
+
+    taskName.innerHTML = task.name;
+    const taskDate = new Date(Date.parse(task.date));
+    date.innerHTML = format(taskDate, 'MMM do yyyy');
+    
+    description.innerHTML = task.description;
+
+    // Css for task urgent
+    if (task.urgent) {
+        taskUrgent.innerHTML = "(Urgent)";
+    } else {
+        taskUrgent.innerHTML = "(Not urgent)";
+    }
+
+    listCheckmark.appendChild(img);
+    taskItem.appendChild(listCheckmark);
+    div1.appendChild(taskName);
+    div1.appendChild(taskUrgent);
+    div2.appendChild(date);
+    contentHeader.appendChild(div1);
+    contentHeader.appendChild(div2);
+    listContent.appendChild(contentHeader);
+    listBody.appendChild(description);
+    listContent.appendChild(listBody);
+    taskItem.appendChild(listContent);
+    li.appendChild(taskItem);
+    ul.appendChild(li);
+}
 
 // Get buttons
 const inboxBtn = document.querySelector('#inbox');
@@ -143,6 +199,17 @@ todayBtn.addEventListener('click', () => {
     document.querySelector('#today-view').style.display = 'block';
     document.querySelector('#upcoming-view').style.display = 'none';
     document.querySelector('#projects-view').style.display = 'none';
+
+    // Check if task date === todays date
+    let todayDate = new Date();
+    todayDate = format(todayDate, 'yyyy-MM-dd')
+    for (let i = 0; i < myTasks.length; i++) {
+        if (myTasks[i].date === todayDate) {
+            createTodayTaskLi(myTasks[i]);
+        };
+    }
+
+    //task.date format 2023-03-06
 })
 
 // Display upcoming tasks
