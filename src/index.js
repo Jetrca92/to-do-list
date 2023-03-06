@@ -8,6 +8,7 @@ class Task {
         this.description = description;
         this.date = date;
         this.urgent = urgent;
+        this.complete = false;
     }
     info() {
         console.log(`${this.name} - ${this.description}, due on ${this.date}, ${this.urgent ? 'urgent' : 'not urgent'}`);
@@ -22,9 +23,68 @@ function addTask() {
     const urgent = document.querySelector('#task-urgent').checked;
     const task = new Task(name, description, date, urgent);
     myTasks.push(task);
-    console.log(myTasks);
+    createTaskLi(task);
     //add function to add new task to display
 }
+
+// Display task in list
+function createTaskLi(task) {
+    const ul = document.querySelector('#listUl');
+
+    // Create elements, set class, innerhtml
+    const li = document.createElement('li');
+    const taskItem = document.createElement('div');
+    const listCheckmark = document.createElement('div');
+    const img = document.createElement('img');
+    const listContent = document.createElement('div');
+    const contentHeader = document.createElement('div');
+    const div1 = document.createElement('div');
+    const taskName = document.createElement('b');
+    const taskUrgent = document.createElement('span');
+    const div2 = document.createElement('div');
+    const date = document.createElement('span');
+    const listBody = document.createElement('div');
+    const description = document.createElement('p');
+
+    li.setAttribute('class', 'list-group-item');
+    taskItem.setAttribute('class', 'task-item');
+    listCheckmark.classList.add('list-checkmark', 'me-3');
+    img.classList.add('unchecked-btn', 'clickable');
+    img.setAttribute('src', '../src/images/check.png');
+    img.setAttribute('alt', 'check icon');
+    listContent.setAttribute('class', 'list-content');
+    contentHeader.classList.add('d-flex', 'justify-content-between');
+    taskName.setAttribute('class', 'me-3');
+    listBody.setAttribute('class', 'list-body');
+    description.classList.add('d-flex', 'flex-wrap');
+
+    taskName.innerHTML = task.name;
+    date.innerHTML = task.date;
+    description.innerHTML = task.description;
+
+    // Css for task urgent
+    if (task.urget) {
+        taskUrgent.innerHTML = "(Urgent)";
+    } else {
+        taskUrgent.innerHTML = "(Not urgent)";
+    }
+
+    listCheckmark.appendChild(img);
+    taskItem.appendChild(listCheckmark);
+    div1.appendChild(taskName);
+    div1.appendChild(taskUrgent);
+    div2.appendChild(date);
+    contentHeader.appendChild(div1);
+    contentHeader.appendChild(div2);
+    listContent.appendChild(contentHeader);
+    listBody.appendChild(description);
+    listContent.appendChild(listBody);
+    taskItem.appendChild(listContent);
+    li.appendChild(taskItem);
+    ul.appendChild(li);
+}
+
+
 
 // Get buttons
 const inboxBtn = document.querySelector('#inbox');
