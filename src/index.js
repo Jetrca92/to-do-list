@@ -112,6 +112,7 @@ document.querySelector('#form').addEventListener('submit', (event) => {
     return false;
 });
 
+// Handle display of submit form
 addTaskBtn.addEventListener('click', () => {
     const form = document.querySelector('.add-task-form');
     if ((form.style.display === 'none') || (!form.style.display)) {
@@ -127,5 +128,38 @@ addTaskBtn.addEventListener('click', () => {
         }, 400);
     }
 });
+
+// Display inbox
+inboxBtn.addEventListener('click', () => {
+    document.querySelector('#inbox-view').style.display = 'block';
+    document.querySelector('#today-view').style.display = 'none';
+    document.querySelector('#upcoming-view').style.display = 'none';
+    document.querySelector('#projects-view').style.display = 'none';
+})
+
+// Display today tasks
+todayBtn.addEventListener('click', () => {
+    document.querySelector('#inbox-view').style.display = 'none';
+    document.querySelector('#today-view').style.display = 'block';
+    document.querySelector('#upcoming-view').style.display = 'none';
+    document.querySelector('#projects-view').style.display = 'none';
+})
+
+// Display upcoming tasks
+upcomingBtn.addEventListener('click', () => {
+    document.querySelector('#inbox-view').style.display = 'none';
+    document.querySelector('#today-view').style.display = 'none';
+    document.querySelector('#upcoming-view').style.display = 'block';
+    document.querySelector('#projects-view').style.display = 'none';
+})
+
+// Display projects
+projectsBtn.addEventListener('click', () => {
+    document.querySelector('#inbox-view').style.display = 'none';
+    document.querySelector('#today-view').style.display = 'none';
+    document.querySelector('#upcoming-view').style.display = 'none';
+    document.querySelector('#projects-view').style.display = 'block';
+})
+
 
 
