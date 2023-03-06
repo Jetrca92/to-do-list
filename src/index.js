@@ -1,3 +1,5 @@
+import { compareAsc, format } from 'date-fns'
+
 // Array for storing tasks
 let myTasks = [];
 
@@ -59,11 +61,14 @@ function createTaskLi(task) {
     description.classList.add('d-flex', 'flex-wrap');
 
     taskName.innerHTML = task.name;
-    date.innerHTML = task.date;
+    console.log(task.date);
+    const taskDate = new Date(Date.parse(task.date));
+    date.innerHTML = format(taskDate, 'MMM do yyyy');
+    
     description.innerHTML = task.description;
 
     // Css for task urgent
-    if (task.urget) {
+    if (task.urgent) {
         taskUrgent.innerHTML = "(Urgent)";
     } else {
         taskUrgent.innerHTML = "(Not urgent)";

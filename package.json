@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Jetrca92/to-do-list#readme",
   "devDependencies": {
     "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3"
   }
 }
