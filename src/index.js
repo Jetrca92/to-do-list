@@ -74,6 +74,17 @@ function createTaskLi(task) {
         taskUrgent.innerHTML = "(Not urgent)";
     }
 
+    // Change style of task if complete
+    img.addEventListener('click', () => {
+        if (img.classList.value === "unchecked-btn clickable") {
+            img.classList.value = "checked-btn clickable";
+            img.parentNode.parentNode.style = "text-decoration: line-through";
+        } else {
+            img.classList.value = "unchecked-btn clickable";
+            img.parentNode.parentNode.style = "text-decoration: none";
+        }
+    })
+
     listCheckmark.appendChild(img);
     taskItem.appendChild(listCheckmark);
     div1.appendChild(taskName);
@@ -89,7 +100,7 @@ function createTaskLi(task) {
     ul.appendChild(li);
 }
 
-function createTodayTaskLi() {
+function createTodayTaskLi(task) {
     const ul = document.querySelector('#listTodayUl');
 
     // Create elements, set class, innerhtml
@@ -131,6 +142,17 @@ function createTodayTaskLi() {
     } else {
         taskUrgent.innerHTML = "(Not urgent)";
     }
+
+    // Change style of task if complete
+    img.addEventListener('click', () => {
+        if (img.classList.value === "unchecked-btn clickable") {
+            img.classList.value = "checked-btn clickable";
+            img.parentNode.parentNode.style = "text-decoration: line-through";
+        } else {
+            img.classList.value = "unchecked-btn clickable";
+            img.parentNode.parentNode.style = "text-decoration: none";
+        }
+    })
 
     listCheckmark.appendChild(img);
     taskItem.appendChild(listCheckmark);
@@ -195,6 +217,7 @@ inboxBtn.addEventListener('click', () => {
 
 // Display today tasks
 todayBtn.addEventListener('click', () => {
+    document.querySelector('#listTodayUl').innerHTML = "";
     document.querySelector('#inbox-view').style.display = 'none';
     document.querySelector('#today-view').style.display = 'block';
     document.querySelector('#upcoming-view').style.display = 'none';
