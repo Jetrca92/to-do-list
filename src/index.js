@@ -64,26 +64,35 @@ function createTaskLi(task) {
     taskName.innerHTML = task.name;
     const taskDate = new Date(Date.parse(task.date));
     date.innerHTML = format(taskDate, 'MMM do yyyy');
-    
     description.innerHTML = task.description;
 
-    // Css for task urgent
+    // Css for task urgent, complete
     if (task.urgent) {
         taskUrgent.innerHTML = "(Urgent)";
     } else {
         taskUrgent.innerHTML = "(Not urgent)";
     }
+    if (task.complete) {
+        img.classList.value = "checked-btn clickable";
+        taskItem.style.textDecoration = "line-through";
+    } else {
+        img.classList.value = "unchecked-btn clickable";
+        taskItem.style.textDecoration = "none";
+    }
 
-    // Change style of task if complete
+    // Change style of task onclick
     img.addEventListener('click', () => {
-        if (img.classList.value === "unchecked-btn clickable") {
+        if (task.complete === false) {
             img.classList.value = "checked-btn clickable";
-            img.parentNode.parentNode.style = "text-decoration: line-through";
-        } else {
+            img.parentNode.parentNode.style.textDecoration = "line-through";
+            task.complete = true;
+        } 
+        else {
             img.classList.value = "unchecked-btn clickable";
-            img.parentNode.parentNode.style = "text-decoration: none";
+            img.parentNode.parentNode.style.textDecoration = "none";
+            task.complete = false;
         }
-    })
+    });
 
     listCheckmark.appendChild(img);
     taskItem.appendChild(listCheckmark);
@@ -121,7 +130,7 @@ function createTodayTaskLi(task) {
     li.setAttribute('class', 'list-group-item');
     taskItem.setAttribute('class', 'task-item');
     listCheckmark.classList.add('list-checkmark', 'me-3');
-    img.classList.add('unchecked-btn', 'clickable');
+    
     img.setAttribute('src', '../src/images/check.png');
     img.setAttribute('alt', 'check icon');
     listContent.setAttribute('class', 'list-content');
@@ -133,26 +142,35 @@ function createTodayTaskLi(task) {
     taskName.innerHTML = task.name;
     const taskDate = new Date(Date.parse(task.date));
     date.innerHTML = format(taskDate, 'MMM do yyyy');
-    
     description.innerHTML = task.description;
 
-    // Css for task urgent
+    // Css for task urgent, complete
     if (task.urgent) {
         taskUrgent.innerHTML = "(Urgent)";
     } else {
         taskUrgent.innerHTML = "(Not urgent)";
     }
+    if (task.complete) {
+        img.classList.value = "checked-btn clickable";
+        taskItem.style.textDecoration = "line-through";
+    } else {
+        img.classList.value = "unchecked-btn clickable";
+        taskItem.style.textDecoration = "none";
+    }
 
     // Change style of task if complete
     img.addEventListener('click', () => {
-        if (img.classList.value === "unchecked-btn clickable") {
+        if (task.complete === false) {
             img.classList.value = "checked-btn clickable";
-            img.parentNode.parentNode.style = "text-decoration: line-through";
-        } else {
+            img.parentNode.parentNode.style.textDecoration = "line-through";
+            task.complete = true;
+        } 
+        else {
             img.classList.value = "unchecked-btn clickable";
-            img.parentNode.parentNode.style = "text-decoration: none";
+            img.parentNode.parentNode.style.textDecoration = "none";
+            task.complete = false;
         }
-    })
+    });
 
     listCheckmark.appendChild(img);
     taskItem.appendChild(listCheckmark);
@@ -209,10 +227,14 @@ addTaskBtn.addEventListener('click', () => {
 
 // Display inbox
 inboxBtn.addEventListener('click', () => {
+    document.querySelector('#listUl').innerHTML = "";
     document.querySelector('#inbox-view').style.display = 'block';
     document.querySelector('#today-view').style.display = 'none';
     document.querySelector('#upcoming-view').style.display = 'none';
     document.querySelector('#projects-view').style.display = 'none';
+    for (let i = 0; i < myTasks.length; i++) {
+        createTaskLi(myTasks[i]);
+    }
 })
 
 // Display today tasks
