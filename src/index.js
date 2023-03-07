@@ -2,6 +2,7 @@ import { compareAsc, format } from 'date-fns'
 
 // Array for storing tasks
 let myTasks = [];
+let myProjects = [];
 
 // Tasks class
 class Task {
@@ -10,6 +11,7 @@ class Task {
         this.description = description;
         this.date = date;
         this.urgent = urgent;
+        this.project = "";
         this.complete = false;
     }
     info() {
@@ -116,6 +118,7 @@ const todayBtn = document.querySelector('#today');
 const upcomingBtn = document.querySelector('#upcoming');
 const projectsBtn = document.querySelector('#projects');
 const addTaskBtn = document.querySelector('#addTask');
+const addProjectBtn = document.querySelector('#addProject');
 
 // Handle submit form
 document.querySelector('#form').addEventListener('submit', (event) => {
@@ -204,6 +207,62 @@ projectsBtn.addEventListener('click', () => {
     document.querySelector('#upcoming-view').style.display = 'none';
     document.querySelector('#projects-view').style.display = 'block';
 })
+
+// Displays projects
+function addProjectLi(projectName) {
+    document.querySelector(`#${projectName}`);
+    const ul = document.createElement('ul');
+    ul.setAttribute('class', 'list-group');
+    ul.setAttribute('id', `${projectName}`)
+    for (let i = 0; i < myTasks; i++) {
+        if (myTask[i].project === projectName) {
+            createTaskLi(myTask[i], `#${projectName}`);
+        }
+    }
+}
+
+// Adds projects and tasks for specific projects
+function addProject() {
+    const projectName = document.querySelector('#project-name').value;
+    const projectsTasks = document.querySelector('.projects-tasks');
+    const projectTitle = document.createElement('h1');
+
+    projectTitle.setAttribute('class', 'h1');
+    projectTitle.setAttribute('id', `${projectName}`)
+    projectTitle.innerHTML = projectName;
+    myProjects.push(projectName);
+    addProjectLi(projectName);
+}
+
+// Handle project submit form
+document.querySelector('#formProject').addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent load
+
+    // Add task, clear form value
+    addProject();
+    document.querySelector('#project-name').value = "";
+    document.querySelector('.add-task-form').style.display = 'none';
+    return false;
+});
+
+// Handle display of project-submit form
+addProjectBtn.addEventListener('click', () => {
+    const form = document.querySelector('.add-project-form');
+    if ((form.style.display === 'none') || (!form.style.display)) {
+        form.style.display = 'block';
+        setTimeout(() => {
+            form.style.opacity = 1;
+        }, 0);
+    }
+    else {
+        form.style.opacity = 0;
+        setTimeout(() => {
+            form.style.display = 'none';    
+        }, 400);
+    }
+});
+
+
 
 
 

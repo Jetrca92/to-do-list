@@ -43,7 +43,7 @@
                             <input type="checkbox" class="form-check-input" id="task-urgent">
                             <label class="form-check-label" for="task-urgent">Check if task is urgent</label>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
                 
@@ -70,6 +70,16 @@
             </div>
 
             <div id="projects-view">
+                <button class="btn btn-outline-primary" id="addProject">+ Add project</button>
+                <div class="add-project-form">
+                    <form id="formProject">
+                        <div class="mb-3">
+                            <label for="project-name" class="form-label">Project name</label>
+                            <input type="text" class="form-control" id="project-name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
                 <div class="projects-tasks">
                     <h1 class="h1">Projects</h1>
                 </div>

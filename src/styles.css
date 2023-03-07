@@ -64,13 +64,13 @@ body {
     color: #6c757d;
 }
 
-.add-task-form {
+.add-task-form, .add-project-form {
     display: none;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
-#form {
+#form, #formProject {
     text-align: start;
     padding: 30px;
 }
@@ -123,4 +123,10 @@ body {
 
 #projects-view {
     display: none;
+}
+
+.add-project-form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
