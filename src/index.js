@@ -177,16 +177,24 @@ todayBtn.addEventListener('click', () => {
             createTaskLi(myTasks[i], '#listTodayUl');
         };
     }
-
-    //task.date format 2023-03-06
 })
 
 // Display upcoming tasks
 upcomingBtn.addEventListener('click', () => {
+    document.querySelector('#listUpcomingUl').innerHTML = "";
     document.querySelector('#inbox-view').style.display = 'none';
     document.querySelector('#today-view').style.display = 'none';
     document.querySelector('#upcoming-view').style.display = 'block';
     document.querySelector('#projects-view').style.display = 'none';
+
+    // Check if task date > todays date
+    let todayDate = new Date();
+    todayDate = format(todayDate, 'yyyy-MM-dd')
+    for (let i = 0; i < myTasks.length; i++) {
+        if (myTasks[i].date > todayDate) {
+            createTaskLi(myTasks[i], '#listUpcomingUl');
+        };
+    }
 })
 
 // Display projects
