@@ -209,29 +209,27 @@ projectsBtn.addEventListener('click', () => {
 })
 
 // Displays projects
-function addProjectLi(projectName) {
-    document.querySelector(`#${projectName}`);
+function addProjectTitle(projectName) {
+    const proName = document.querySelector('.project-' + projectName.replace(/\s+/g, '-'));
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'list-group');
     ul.setAttribute('id', `${projectName}`)
-    for (let i = 0; i < myTasks; i++) {
-        if (myTask[i].project === projectName) {
-            createTaskLi(myTask[i], `#${projectName}`);
-        }
-    }
+    
+    proName.appendChild(ul);
 }
 
 // Adds projects and tasks for specific projects
 function addProject() {
     const projectName = document.querySelector('#project-name').value;
     const projectsTasks = document.querySelector('.projects-tasks');
-    const projectTitle = document.createElement('h1');
+    const projectTitle = document.createElement('h2');
 
-    projectTitle.setAttribute('class', 'h1');
-    projectTitle.setAttribute('id', `${projectName}`)
+    projectTitle.setAttribute('class', 'h2 project-' + projectName.replace(/\s+/g, '-'));
     projectTitle.innerHTML = projectName;
+    projectsTasks.appendChild(projectTitle);
     myProjects.push(projectName);
-    addProjectLi(projectName);
+
+    addProjectTitle(projectName);
 }
 
 // Handle project submit form
@@ -241,7 +239,7 @@ document.querySelector('#formProject').addEventListener('submit', (event) => {
     // Add task, clear form value
     addProject();
     document.querySelector('#project-name').value = "";
-    document.querySelector('.add-task-form').style.display = 'none';
+    document.querySelector('.add-project-form').style.display = 'none';
     return false;
 });
 
