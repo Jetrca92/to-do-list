@@ -93,8 +93,15 @@ function createTaskLi(task, listul) {
 
     // Add event listener for delete
     dropdownMenuItemLink.addEventListener('click', () => {
-        console.log('delete item');
-    })
+        // Find the index of the task to be deleted
+        const index = myTasks.findIndex(t => t.name === task.name && t.description === task.description && t.date === task.date && t.urgent === task.urgent && t.project === task.project);
+        if (index !== -1) {
+            // Remove the task from the myTasks array
+            myTasks.splice(index, 1);
+            // Remove the task from the DOM
+            li.remove();
+        }
+    });
 
     taskName.innerHTML = task.name;
     const taskDate = new Date(Date.parse(task.date));
@@ -289,6 +296,29 @@ function addProject() {
     const projectsTasks = document.querySelector('.projects-tasks');
     const projectTitle = document.createElement('h2');
 
+    // create dropDown delete element
+    const dropDown = document.createElement("div");
+    dropDown.classList.add("dropdown");
+    const toggleBtn = document.createElement("button");
+    toggleBtn.classList.add("btn", "btn-sm", "btn-outline-primary", "dropdown-toggle");
+    toggleBtn.type = "button";
+    toggleBtn.setAttribute("data-bs-toggle", "dropdown");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.textContent = "Delete";
+    const dropdownMenu = document.createElement("ul");
+    dropdownMenu.classList.add("dropdown-menu");
+
+    const dropdownMenuItem = document.createElement("li");
+    const dropdownMenuItemLink = document.createElement("a");
+    dropdownMenuItemLink.classList.add("dropdown-item");
+    dropdownMenuItemLink.href = "#";
+    dropdownMenuItemLink.textContent = "Delete Task";
+    dropdownMenuItem.appendChild(dropdownMenuItemLink);
+    dropdownMenu.appendChild(dropdownMenuItem);
+
+    dropDown.appendChild(toggleBtn);
+    dropDown.appendChild(dropdownMenu);
+
     projectTitle.setAttribute('class', 'h2 project-' + projectName.replace(/\s+/g, '-'));
     projectTitle.classList.add('mt-3');
     projectTitle.innerHTML = projectName;
@@ -297,6 +327,7 @@ function addProject() {
     ul.setAttribute('class', 'list-group');
     ul.setAttribute('id', 'project-' + projectName.replace(/\s+/g, '-'))
     projectsTasks.appendChild(projectTitle);
+    projectTitle.appendChild(dropDown);
     projectTitle.insertAdjacentElement('afterend', ul);
 
 }
