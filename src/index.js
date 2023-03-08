@@ -6,12 +6,12 @@ let myProjects = [];
 
 // Tasks class
 class Task {
-    constructor(name, description, date, urgent) {
+    constructor(name, description, date, urgent, project) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.urgent = urgent;
-        this.project = "";
+        this.project = project;
         this.complete = false;
     }
     info() {
@@ -25,7 +25,8 @@ function addTask() {
     const description = document.querySelector('#task-description').value;
     const date = document.querySelector('#task-date').value;
     const urgent = document.querySelector('#task-urgent').checked;
-    const task = new Task(name, description, date, urgent);
+    const project = document.querySelector('#projectSelect').value;
+    const task = new Task(name, description, date, urgent, project);
     myTasks.push(task);
     console.log(myTasks);
     myTasks.sort((a, b) => compareAsc(new Date(a.date), new Date(b.date))); //sort tasks by date asc
@@ -149,11 +150,38 @@ addTaskBtn.addEventListener('click', () => {
             form.style.display = 'none';    
         }, 400);
     }
+
+    // Add projects from array to select
+    const projectSelect = document.querySelector('#project-select');
+    projectSelect.innerHTML = "";
+    projectSelect.classList.add('col-auto', 'my-1');
+    const selectLabel = document.createElement('label');
+    const select = document.createElement('select');
+    const optionDefault = document.createElement('option');
+    selectLabel.setAttribute('class', 'mr-sm-2');
+    selectLabel.setAttribute('for', 'projectSelect');
+    selectLabel.innerHTML = "Project";
+    select.setAttribute('id', 'projectSelect');
+    select.classList.add('custom-select', 'mr-sm-2');
+    optionDefault.setAttribute('selected', true);
+    optionDefault.innerHTML = "No project";
+
+    select.appendChild(optionDefault);
+
+    for (let i = 0; i < myProjects.length; i++) {
+        const option = document.createElement('option');
+        option.setAttribute('value', myProjects[i]);
+        option.innerHTML = myProjects[i];
+        select.appendChild(option);
+    }
+    projectSelect.append(selectLabel);
+    projectSelect.append(select);
 });
 
 // Display inbox
 inboxBtn.addEventListener('click', () => {
     document.querySelector('#listUl').innerHTML = "";
+    document.querySelector('.add-task-form').style.display = 'none';
     document.querySelector('#inbox-view').style.display = 'block';
     document.querySelector('#today-view').style.display = 'none';
     document.querySelector('#upcoming-view').style.display = 'none';
@@ -206,6 +234,18 @@ projectsBtn.addEventListener('click', () => {
     document.querySelector('#today-view').style.display = 'none';
     document.querySelector('#upcoming-view').style.display = 'none';
     document.querySelector('#projects-view').style.display = 'block';
+
+
+    // Check if task in project
+    for (let i = 0; i < myTasks.length; i++) {
+        for (let j = 0; j < myProjects.length; j++) {
+            document.querySelector(`#${myProjects[j]}`).innerHTML = "";
+            if (myTasks[i].project === myProjects[j]) {
+                createTaskLi(myTasks[i], `#${myProjects[j]}`);
+            }
+        }
+    }
+
 })
 
 // Displays projects
@@ -214,7 +254,6 @@ function addProjectTitle(projectName) {
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'list-group');
     ul.setAttribute('id', `${projectName}`)
-    
     proName.appendChild(ul);
 }
 
