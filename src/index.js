@@ -292,6 +292,8 @@ projectsBtn.addEventListener('click', () => {
 
 // Adds projects and tasks for specific projects
 function addProject() {
+    const div = document.createElement('div');
+    div.setAttribute('class', 'project-header')
     const projectName = document.querySelector('#project-name').value;
     const projectsTasks = document.querySelector('.projects-tasks');
     const projectTitle = document.createElement('h2');
@@ -312,12 +314,23 @@ function addProject() {
     const dropdownMenuItemLink = document.createElement("a");
     dropdownMenuItemLink.classList.add("dropdown-item");
     dropdownMenuItemLink.href = "#";
-    dropdownMenuItemLink.textContent = "Delete Task";
+    dropdownMenuItemLink.textContent = "Delete Project";
     dropdownMenuItem.appendChild(dropdownMenuItemLink);
     dropdownMenu.appendChild(dropdownMenuItem);
 
     dropDown.appendChild(toggleBtn);
     dropDown.appendChild(dropdownMenu);
+
+    // Add event listener for delete
+    dropdownMenuItemLink.addEventListener('click', () => {
+        ul.remove();
+        div.remove();
+        for (let i = 0; i < myTasks.length; i++) {
+            if (myTasks[i].project === projectName) {
+                myTasks[i].project = "No project";
+            }
+        }
+    });
 
     projectTitle.setAttribute('class', 'h2 project-' + projectName.replace(/\s+/g, '-'));
     projectTitle.classList.add('mt-3');
@@ -326,11 +339,11 @@ function addProject() {
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'list-group');
     ul.setAttribute('id', 'project-' + projectName.replace(/\s+/g, '-'))
-    projectsTasks.appendChild(projectTitle);
-    projectTitle.appendChild(dropDown);
-    projectTitle.insertAdjacentElement('afterend', ul);
-
-}
+    div.appendChild(projectTitle);
+    div.appendChild(dropDown);
+    projectsTasks.appendChild(div);
+    projectsTasks.appendChild(ul);
+};
 
 // Handle project submit form
 document.querySelector('#formProject').addEventListener('submit', (event) => {

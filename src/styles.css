@@ -143,3 +143,9 @@ body {
     transform: rotate(180deg);
     margin-left: 0.2em;
 }
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
