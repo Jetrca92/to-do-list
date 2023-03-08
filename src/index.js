@@ -58,7 +58,7 @@ function createTaskLi(task, listul) {
     taskItem.setAttribute('class', 'task-item');
     listCheckmark.classList.add('list-checkmark', 'me-3');
     img.classList.add('unchecked-btn', 'clickable');
-    img.setAttribute('src', '../src/images/check.png');
+    img.setAttribute('src', '/src/images/check.png');
     img.setAttribute('alt', 'check icon');
     listContent.setAttribute('class', 'list-content');
     contentHeader.classList.add('d-flex', 'justify-content-between');
