@@ -236,11 +236,12 @@ projectsBtn.addEventListener('click', () => {
 
 
     // Check if task in project
-    for (let i = 0; i < myTasks.length; i++) {
-        for (let j = 0; j < myProjects.length; j++) {
-            if (document.querySelector(`#project-${myProjects[j].replace(/\s+/g, '-')}`)) {
-                document.querySelector(`#project-${myProjects[j].replace(/\s+/g, '-')}`).innerHTML = "";
-            }
+    for (let j = 0; j < myProjects.length; j++) {
+        const projectList = document.querySelector(`#project-${myProjects[j].replace(/\s+/g, '-')}`);
+        if (projectList) {
+            projectList.innerHTML = "";
+        }
+        for (let i = 0; i < myTasks.length; i++) {
             if (myTasks[i].project === myProjects[j]) {
                 createTaskLi(myTasks[i], `#project-${myProjects[j].replace(/\s+/g, '-')}`);
             }
