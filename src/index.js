@@ -186,7 +186,6 @@ inboxBtn.addEventListener('click', () => {
     document.querySelector('#today-view').style.display = 'none';
     document.querySelector('#upcoming-view').style.display = 'none';
     document.querySelector('#projects-view').style.display = 'none';
-    //myTasks.sort((a, b) => compareAsc(new Date(a.date), new Date(b.date))); //sort tasks by date asc
     for (let i = 0; i < myTasks.length; i++) {
         createTaskLi(myTasks[i], '#listUl');
     }
@@ -239,25 +238,16 @@ projectsBtn.addEventListener('click', () => {
     // Check if task in project
     for (let i = 0; i < myTasks.length; i++) {
         for (let j = 0; j < myProjects.length; j++) {
-            if (document.querySelector(`#${myProjects[j]}`)) {
-                document.querySelector(`#${myProjects[j]}`).innerHTML = "";
+            if (document.querySelector(`#project-${myProjects[j].replace(/\s+/g, '-')}`)) {
+                document.querySelector(`#project-${myProjects[j].replace(/\s+/g, '-')}`).innerHTML = "";
             }
             if (myTasks[i].project === myProjects[j]) {
-                createTaskLi(myTasks[i], `#${myProjects[j]}`);
+                createTaskLi(myTasks[i], `#project-${myProjects[j].replace(/\s+/g, '-')}`);
             }
         }
     }
 
 })
-
-// Displays projects
-function addProjectTitle(projectName) {
-    const proName = document.querySelector('.project-' + projectName.replace(/\s+/g, '-'));
-    const ul = document.createElement('ul');
-    ul.setAttribute('class', 'list-group');
-    ul.setAttribute('id', `${projectName}`)
-    proName.appendChild(ul);
-}
 
 // Adds projects and tasks for specific projects
 function addProject() {
@@ -270,7 +260,7 @@ function addProject() {
     myProjects.push(projectName);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'list-group');
-    ul.setAttribute('id', `${projectName}`)
+    ul.setAttribute('id', 'project-' + projectName.replace(/\s+/g, '-'))
     projectsTasks.appendChild(projectTitle);
     projectTitle.insertAdjacentElement('afterend', ul);
 
