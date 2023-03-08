@@ -48,6 +48,7 @@ function createTaskLi(task, listul) {
     const div1 = document.createElement('div');
     const taskName = document.createElement('b');
     const taskUrgent = document.createElement('span');
+    
     const div2 = document.createElement('div');
     const date = document.createElement('span');
     const listBody = document.createElement('div');
@@ -64,6 +65,36 @@ function createTaskLi(task, listul) {
     taskName.setAttribute('class', 'me-3');
     listBody.setAttribute('class', 'list-body');
     description.classList.add('d-flex', 'flex-wrap');
+    
+
+    // create dropDown delete element
+    const dropDown = document.createElement("div");
+    dropDown.classList.add("dropdown");
+    const toggleBtn = document.createElement("button");
+    toggleBtn.classList.add("btn", "btn-sm", "btn-outline-primary", "dropdown-toggle");
+    toggleBtn.type = "button";
+    toggleBtn.setAttribute("data-bs-toggle", "dropdown");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.textContent = "Delete";
+    const dropdownMenu = document.createElement("ul");
+    dropdownMenu.classList.add("dropdown-menu");
+
+    const dropdownMenuItem = document.createElement("li");
+    const dropdownMenuItemLink = document.createElement("a");
+    dropdownMenuItemLink.classList.add("dropdown-item");
+    dropdownMenuItemLink.href = "#";
+    dropdownMenuItemLink.textContent = "Delete Task";
+    dropdownMenuItem.appendChild(dropdownMenuItemLink);
+    dropdownMenu.appendChild(dropdownMenuItem);
+
+    dropDown.appendChild(toggleBtn);
+    dropDown.appendChild(dropdownMenu);
+    
+
+    // Add event listener for delete
+    dropdownMenuItemLink.addEventListener('click', () => {
+        console.log('delete item');
+    })
 
     taskName.innerHTML = task.name;
     const taskDate = new Date(Date.parse(task.date));
@@ -102,9 +133,11 @@ function createTaskLi(task, listul) {
     taskItem.appendChild(listCheckmark);
     div1.appendChild(taskName);
     div1.appendChild(taskUrgent);
+    div1.appendChild(dropDown);
     div2.appendChild(date);
     contentHeader.appendChild(div1);
     contentHeader.appendChild(div2);
+    contentHeader.appendChild(dropDown);
     listContent.appendChild(contentHeader);
     listBody.appendChild(description);
     listContent.appendChild(listBody);
@@ -257,6 +290,7 @@ function addProject() {
     const projectTitle = document.createElement('h2');
 
     projectTitle.setAttribute('class', 'h2 project-' + projectName.replace(/\s+/g, '-'));
+    projectTitle.classList.add('mt-3');
     projectTitle.innerHTML = projectName;
     myProjects.push(projectName);
     const ul = document.createElement('ul');
