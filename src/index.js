@@ -239,7 +239,9 @@ projectsBtn.addEventListener('click', () => {
     // Check if task in project
     for (let i = 0; i < myTasks.length; i++) {
         for (let j = 0; j < myProjects.length; j++) {
-            document.querySelector(`#${myProjects[j]}`).innerHTML = "";
+            if (document.querySelector(`#${myProjects[j]}`)) {
+                document.querySelector(`#${myProjects[j]}`).innerHTML = "";
+            }
             if (myTasks[i].project === myProjects[j]) {
                 createTaskLi(myTasks[i], `#${myProjects[j]}`);
             }
@@ -265,10 +267,13 @@ function addProject() {
 
     projectTitle.setAttribute('class', 'h2 project-' + projectName.replace(/\s+/g, '-'));
     projectTitle.innerHTML = projectName;
-    projectsTasks.appendChild(projectTitle);
     myProjects.push(projectName);
+    const ul = document.createElement('ul');
+    ul.setAttribute('class', 'list-group');
+    ul.setAttribute('id', `${projectName}`)
+    projectsTasks.appendChild(projectTitle);
+    projectTitle.insertAdjacentElement('afterend', ul);
 
-    addProjectTitle(projectName);
 }
 
 // Handle project submit form
