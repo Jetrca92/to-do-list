@@ -1,7 +1,15 @@
 import { compareAsc, format } from 'date-fns'
 import './style.css';
 import CheckImg from './images/check.png';
-import checkIcon from './images/check.ico';
+import CheckIcon from './images/check.ico';
+
+// Add favicon to header
+const head = document.querySelector('head');
+const favicon = document.createElement('link');
+favicon.setAttribute('rel', 'icon');
+favicon.setAttribute('type', 'image/x-icon');
+favicon.setAttribute('href', `${CheckIcon}`);
+head.appendChild(favicon);
 
 // Add icon to navbar
 const checkImg = document.createElement('img');

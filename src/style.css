@@ -149,3 +149,57 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+@media only screen and (max-width: 700px) {
+    html {
+    display: block;
+    }
+    
+    body {
+    width: 100%;
+    }
+    
+    .container {
+    max-width: 100%;
+    padding: 0 10px;
+    }
+    
+    .header {
+    flex-direction: column;
+    gap: 20px;
+    }
+    
+    .title-container {
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .title-img {
+    width: 20px;
+    }
+    
+    .list-body {
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .task-item {
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .list-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .list-checkmark {
+    margin-right: 10px;
+    }
+    
+    .add-task-form,
+    .add-project-form {
+    opacity: 1;
+    }
+}
