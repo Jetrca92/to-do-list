@@ -1,4 +1,31 @@
 import { compareAsc, format } from 'date-fns'
+import './style.css';
+import CheckImg from './images/check.png';
+import checkIcon from './images/check.ico';
+
+// Add icon to navbar
+const checkImg = document.createElement('img');
+checkImg.setAttribute('alt', 'check icon');
+checkImg.classList.add('title-img');
+checkImg.setAttribute('src', `${CheckImg}`);
+
+const h2 = document.createElement('h2');
+h2.classList.add('h2');
+const span1 = document.createElement('span');
+span1.classList.add('blue');
+span1.innerHTML = 'To';
+const span2 = document.createElement('span');
+span2.classList.add('blue-light');
+span2.innerHTML = 'Do';
+const span3 = document.createElement('span');
+span3.classList.add('gray');
+span3.innerHTML = 'by Jetrca';
+h2.appendChild(span1);
+h2.appendChild(span2);
+h2.appendChild(span3);
+const titleContainer = document.querySelector('.title-container');
+titleContainer.appendChild(checkImg);
+titleContainer.appendChild(h2);
 
 // Array for storing tasks
 let myTasks = [];
@@ -58,7 +85,7 @@ function createTaskLi(task, listul) {
     taskItem.setAttribute('class', 'task-item');
     listCheckmark.classList.add('list-checkmark', 'me-3');
     img.classList.add('unchecked-btn', 'clickable');
-    img.setAttribute('src', '/src/images/check.png');
+    img.setAttribute('src', `${CheckImg}`);
     img.setAttribute('alt', 'check icon');
     listContent.setAttribute('class', 'list-content');
     contentHeader.classList.add('d-flex', 'justify-content-between');
@@ -66,7 +93,6 @@ function createTaskLi(task, listul) {
     listBody.setAttribute('class', 'list-body');
     description.classList.add('d-flex', 'flex-wrap');
     
-
     // create dropDown delete element
     const dropDown = document.createElement("div");
     dropDown.classList.add("dropdown");
@@ -89,7 +115,6 @@ function createTaskLi(task, listul) {
 
     dropDown.appendChild(toggleBtn);
     dropDown.appendChild(dropdownMenu);
-    
 
     // Add event listener for delete
     dropdownMenuItemLink.addEventListener('click', () => {
